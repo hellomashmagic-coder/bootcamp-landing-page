@@ -20,7 +20,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Paste your Google Apps Script Web App URL here to back up leads automatically to Google Sheets
-const GOOGLE_SHEET_URL = "";
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxAxPgsMvNf7UbZ20mvTlvwdsLkh2yTERt9bxfmydllKqP-Dh5w8ZAsrc2k13b46TwC/exec";
 
 document.addEventListener("DOMContentLoaded", () => {
     try { initMobileMenu(); } catch (e) { console.error("initMobileMenu failed:", e); }
