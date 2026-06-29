@@ -19,6 +19,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Paste your Google Apps Script Web App URL here to back up leads automatically to Google Sheets
+const GOOGLE_SHEET_URL = "";
+
 document.addEventListener("DOMContentLoaded", () => {
     try { initMobileMenu(); } catch (e) { console.error("initMobileMenu failed:", e); }
     try { initFAQs(); } catch (e) { console.error("initFAQs failed:", e); }
@@ -216,13 +219,12 @@ function initEnrollmentForm() {
             e.preventDefault();
             
             // Get input values
-            const parentName = document.getElementById("parentName").value;
+            const studentName = document.getElementById("studentName").value;
             const whatsappNumber = document.getElementById("whatsappNumber").value;
-            const emailAddress = document.getElementById("emailAddress").value;
             const studentGrade = document.getElementById("studentGrade").value;
             
             // Simple validation
-            if (!parentName || !whatsappNumber || !emailAddress || !studentGrade) {
+            if (!studentName || !whatsappNumber || !studentGrade) {
                 alert("Please fill in all fields.");
                 return;
             }
@@ -243,13 +245,13 @@ function initEnrollmentForm() {
                     id: nextId,
                     date: todayDate,
                     time: currentTime,
-                    student: parentName.trim(), // Save parent's name under student field
+                    student: studentName.trim(),
                     class: studentGrade,
                     subject: "Not Specified",
                     phone: whatsappNumber.trim(),
                     city: "Unknown",
                     job: "Not Specified",
-                    notes: `Email: ${emailAddress.trim()}\nSubmission: Study Transformation Bootcamp Landing Page Form`,
+                    notes: `Submission: Study Transformation Bootcamp Landing Page Form`,
                     bda: "Unassigned",
                     status: "New",
                     revenue: 0,
@@ -270,6 +272,23 @@ function initEnrollmentForm() {
                 
                 // Write lead document to firestore
                 await setDoc(doc(db, "bootcamp_leads", nextId), newLead);
+                
+                // Sync lead to Google Sheet (if URL is set)
+                if (GOOGLE_SHEET_URL) {
+                    try {
+                        await fetch(GOOGLE_SHEET_URL, {
+                            method: "POST",
+                            mode: "no-cors",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(newLead)
+                        });
+                        console.log("Google Sheets Lead Backup: SUCCESS");
+                    } catch (sheetError) {
+                        console.error("Google Sheets Lead Backup failed: ", sheetError);
+                    }
+                }
                 
                 // Show success modal
                 successPhone.innerText = whatsappNumber;
