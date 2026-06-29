@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try { initCountdownTimer(); } catch (e) { console.error("initCountdownTimer failed:", e); }
     try { initVideoModal(); } catch (e) { console.error("initVideoModal failed:", e); }
     try { initEnrollmentForm(); } catch (e) { console.error("initEnrollmentForm failed:", e); }
+    try { initStickyCta(); } catch (e) { console.error("initStickyCta failed:", e); }
 });
 
 /* 1. Mobile Menu Sidebar Toggle */
@@ -135,6 +136,10 @@ function initCountdownTimer() {
     const hoursEl = document.getElementById("hours");
     const minutesEl = document.getElementById("minutes");
     const secondsEl = document.getElementById("seconds");
+    
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
+        return;
+    }
     
     // Set a rolling 2.5-day target time in localStorage if not set, or if expired
     let targetTime = localStorage.getItem("bootcamp_countdown_target");
@@ -371,4 +376,21 @@ function getCurrentDisplayTime() {
     hours = hours ? hours : 12; // the hour '0' should be '12'
     const strHours = String(hours).padStart(2, '0');
     return `${strHours}:${minutes} ${ampm}`;
+}
+
+/* 8. Sticky Floating Action Bar Scroll Handler */
+function initStickyCta() {
+    const stickyCta = document.getElementById("stickyCta");
+    if (!stickyCta) return;
+    
+    const toggleStickyBar = () => {
+        if (window.scrollY > 450) {
+            stickyCta.classList.add("show");
+        } else {
+            stickyCta.classList.remove("show");
+        }
+    };
+    
+    window.addEventListener("scroll", toggleStickyBar);
+    toggleStickyBar(); // Check initial position
 }
