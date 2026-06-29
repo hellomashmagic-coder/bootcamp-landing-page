@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     try { initCountdownTimer(); } catch (e) { console.error("initCountdownTimer failed:", e); }
     try { initVideoModal(); } catch (e) { console.error("initVideoModal failed:", e); }
     try { initEnrollmentForm(); } catch (e) { console.error("initEnrollmentForm failed:", e); }
-    try { initHeroSlideshow(); } catch (e) { console.error("initHeroSlideshow failed:", e); }
 });
 
 /* 1. Mobile Menu Sidebar Toggle */
@@ -353,17 +352,4 @@ function getCurrentDisplayTime() {
     hours = hours ? hours : 12; // the hour '0' should be '12'
     const strHours = String(hours).padStart(2, '0');
     return `${strHours}:${minutes} ${ampm}`;
-}
-
-/* 8. Hero Slideshow Auto Transition */
-function initHeroSlideshow() {
-    const slides = document.querySelectorAll(".hero-slide-img");
-    if (slides.length > 1) {
-        let currentSlide = 0;
-        setInterval(() => {
-            slides[currentSlide].classList.remove("active");
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add("active");
-        }, 4000);
-    }
 }
