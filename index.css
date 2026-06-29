@@ -6,12 +6,12 @@
     --primary-hover: #F57F17;
     --primary-rgb: 249, 168, 37;
     
-    --teal: #00796B;
-    --teal-hover: #004D40;
+    --teal: #007A78;
+    --teal-hover: #005C5A;
     --teal-light: #E0F2F1;
-    --teal-rgb: 0, 121, 107;
+    --teal-rgb: 0, 122, 120;
     
-    --bg-light: #FAFAFA;
+    --bg-light: #FFFFFF;
     --bg-white: #FFFFFF;
     --bg-dark: #0B2B30;
     --bg-darker: #051A1D;
@@ -144,7 +144,7 @@ img {
     gap: 0.5rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
     cursor: pointer;
     border: none;
     text-align: center;
@@ -233,10 +233,10 @@ img {
 }
 
 .logo-img {
-    height: 52px;
+    height: 96px;
     width: auto;
     display: block;
-    margin: -10px 0;
+    margin: -25px 0;
 }
 
 .nav-links {
@@ -348,10 +348,10 @@ img {
     position: relative;
     padding-top: 7rem;
     padding-bottom: 0;
-    background-color: #FAFAFA;
+    background-color: #FFFFFF;
     background-image: 
-        radial-gradient(circle at 100% 0%, rgba(224, 242, 241, 0.7) 0%, rgba(250, 250, 250, 0.9) 70%),
-        radial-gradient(circle at 0% 100%, rgba(255, 248, 225, 0.5) 0%, rgba(250, 250, 250, 1) 80%);
+        radial-gradient(circle at 100% 0%, rgba(224, 242, 241, 0.4) 0%, rgba(255, 255, 255, 0.9) 70%),
+        radial-gradient(circle at 0% 100%, rgba(255, 248, 225, 0.3) 0%, rgba(255, 255, 255, 1) 80%);
     overflow: hidden;
 }
 
