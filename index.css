@@ -371,27 +371,11 @@ img {
 
 /* Decorative glowing blobs behind content */
 .hero-glow-1 {
-    position: absolute;
-    top: -10%;
-    left: 20%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(0, 150, 136, 0.15) 0%, transparent 70%);
-    z-index: 0;
-    pointer-events: none;
-    filter: blur(50px);
+    display: none;
 }
 
 .hero-glow-2 {
-    position: absolute;
-    bottom: -10%;
-    right: 5%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(249, 168, 37, 0.12) 0%, transparent 70%);
-    z-index: 0;
-    pointer-events: none;
-    filter: blur(50px);
+    display: none;
 }
 
 .hero-container {
@@ -563,22 +547,14 @@ img {
 
 .hero-img-container {
     position: relative;
-    max-width: 420px;
+    max-width: 370px;
     width: 100%;
     margin-bottom: -5px;
 }
 
 /* Glow ring behind image */
 .hero-img-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle, rgba(0, 121, 107, 0.15) 0%, transparent 70%);
-    z-index: -1;
-    filter: blur(8px);
+    display: none;
 }
 
 .hero-student-img {
