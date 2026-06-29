@@ -979,15 +979,29 @@ img {
     align-items: flex-end;
 }
 
+/* Curved stroke arch frame behind student */
+.included-image-wrapper::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 105%;
+    height: 85%;
+    border: 2px solid rgba(249, 168, 37, 0.25);
+    border-radius: 40px 40px 0 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+}
+
 .included-student-img {
     height: 100%;
     width: auto;
     object-fit: contain;
+    position: relative;
+    z-index: 2;
     filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5));
-}
-
-.included-student-img:hover {
-    transform: scale(1.02);
 }
 
 /* Section 5: Real Results */
